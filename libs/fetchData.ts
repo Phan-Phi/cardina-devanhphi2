@@ -16,15 +16,15 @@ const fetchData = async (routeKey: ROUTES_KEY, queryString?: object) => {
         `${ROUTES[routeKey]}?${buildQueryString(queryString)}`,
         {
           headers: headers,
-          next: { revalidate: 900 },
-          cache: "no-store",
+          next: { revalidate: 15 },
+          cache: "force-cache",
         }
       );
     } else {
       res = await fetch(`${ROUTES[routeKey]}?populate=deep`, {
         headers: headers,
-        next: { revalidate: 900 },
-        cache: "no-store",
+        next: { revalidate: 15 },
+        cache: "force-cache",
       });
     }
 
