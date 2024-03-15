@@ -17,12 +17,14 @@ const fetchData = async (routeKey: ROUTES_KEY, queryString?: object) => {
         {
           headers: headers,
           next: { revalidate: 900 },
+          cache: "no-store",
         }
       );
     } else {
       res = await fetch(`${ROUTES[routeKey]}?populate=deep`, {
         headers: headers,
         next: { revalidate: 900 },
+        cache: "no-store",
       });
     }
 
