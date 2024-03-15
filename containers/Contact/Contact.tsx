@@ -15,6 +15,7 @@ interface Props {
 }
 
 export default function Contact({ initialData }: Props) {
+  console.log("🚀 ~ Contact ~ initialData:", initialData);
   if (initialData == undefined) return;
 
   const { title, description } = get(initialData, "attributes.pageinfo");
