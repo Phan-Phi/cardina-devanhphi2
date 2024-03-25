@@ -14,8 +14,9 @@ const getMetadata = (data: any): Metadata => {
   } = data;
   console.log("🚀 ~ getMetadata ~ metaImage:", metaImage);
 
-  const bgImage = `${process.env.NEXT_PUBLIC_BACKEND_API}${metaImage.url}`;
+  const bgImage = `${process.env.NEXT_PUBLIC_BACKEND_API}${metaImage.data?.attributes?.url}`;
   const fvImage = `${process.env.NEXT_PUBLIC_BACKEND_API}${dataFavicon?.data?.attributes?.url}`;
+  console.log("🚀 ~ getMetadata ~ bgImage:", bgImage);
   const twitterData =
     metaSocial.length === 0
       ? undefined
