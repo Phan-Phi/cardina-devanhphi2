@@ -28,7 +28,6 @@ export default function FormContact() {
     try {
       setLoading(true);
 
-      return;
       await axios.post(`${process.env.NEXT_PUBLIC_BACKEND_API}/api/contacts`, {
         data: { ...values },
       });

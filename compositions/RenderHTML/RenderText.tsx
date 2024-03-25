@@ -8,6 +8,7 @@ interface RenderTextProps extends BoxProps {
 
 export default function RenderText(props: RenderTextProps) {
   const { data, DOMPurifyConfig, ...restProps } = props;
+  // console.log("🚀 ~ RenderText ~ data:", data);
   const _data = data.replace(/\n/g, "<br>");
 
   return (

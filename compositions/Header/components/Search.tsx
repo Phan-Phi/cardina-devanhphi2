@@ -28,7 +28,11 @@ export default function Search() {
           onChange={(value) => {
             setSearch(value.target.value);
           }}
-          _placeholder={{ opacity: 1, color: "primary.main" }}
+          _placeholder={{
+            opacity: 0.6,
+            color: "primary.main",
+            fontStyle: "italic",
+          }}
         />
 
         <StyledInputRightElement width="4.5rem">

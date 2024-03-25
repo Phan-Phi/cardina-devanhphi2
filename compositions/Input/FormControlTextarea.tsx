@@ -7,6 +7,7 @@ import {
   FormHelperTextProps,
   FormControl as ChakraFormControl,
   FormControlProps as ChakraFormControlProps,
+  Heading,
 } from "@chakra-ui/react";
 import React, { useMemo } from "react";
 import { UseControllerReturn } from "react-hook-form";
@@ -47,10 +48,7 @@ export default function FormControlTextarea(props: FormControlProps) {
     if (error == undefined) return null;
 
     if (error.type === "required") {
-      return "demo";
-    }
-    if (error.type === name) {
-      return "demo";
+      return error.message;
     }
   }, [error, name]);
 
@@ -64,7 +62,7 @@ export default function FormControlTextarea(props: FormControlProps) {
         value={value}
         onChange={onChange}
         placeholder={placeholder}
-        _placeholder={{ opacity: 1, color: "black" }}
+        _placeholder={{ opacity: 0.4, color: "black", fontSize: "12px" }}
         autoComplete="off"
         errorIcon={!error}
         resize="none"
@@ -72,6 +70,10 @@ export default function FormControlTextarea(props: FormControlProps) {
         focusBorderColor="transparent"
         {...InputProps}
       />
+
+      <Heading variant="p5" textAlign="left" color="red">
+        {error && (renderError as any)}
+      </Heading>
 
       {/* <FormHelperTextBase {...FormHelperTextProps}>
         {error && (renderError as any)}

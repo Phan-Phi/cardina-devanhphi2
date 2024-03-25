@@ -6,7 +6,7 @@ export interface AboutPage {
     createdAt: Date;
     updatedAt: Date;
     publishedAt?: Date;
-    pageinfo: PageInfomation;
+    seo: PageInfomation;
     body: any;
     certificationSection: {
       id: number;

@@ -24,7 +24,7 @@ export async function generateMetadata(): Promise<Metadata> {
     titleSEO: "Products",
   };
 
-  return getMetadata({ dataFavicon, ...data.attributes.pageinfo, ...titleSEO });
+  return getMetadata({ dataFavicon, ...data.attributes.seo, ...titleSEO });
 }
 
 const ListingProductPage = async () => {

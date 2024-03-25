@@ -14,15 +14,14 @@ export async function generateMetadata(): Promise<Metadata> {
   const dataFavicon = dataSetting.attributes.favicon;
 
   const titleSEO = {
-    titleSEO: "About Us",
+    titleSEO: "About Cardina",
   };
 
-  return getMetadata({ dataFavicon, ...data.attributes.pageinfo, ...titleSEO });
+  return getMetadata({ dataFavicon, ...data.attributes.seo, ...titleSEO });
 }
 
 const AboutPage = async () => {
   const { data }: Payload<AboutPage> = await fetchData("ABOUT");
-  console.log("🚀 ~ AboutPage ~ data:", data);
   const { data: dataSetting }: Payload<GeneralSettingPage> =
     await fetchData("GENERAL_SETTING");
 

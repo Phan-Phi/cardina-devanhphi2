@@ -31,7 +31,7 @@ export default function Searchproduct({
   dataProductItems,
   metaDataProductItems,
 }: Props) {
-  const { title, description } = initialData.attributes.pageinfo;
+  const { metaTitle, metaDescription } = initialData.attributes.seo;
   const subTitle = initialData.attributes.subTitle;
 
   const [dataItems, setDataItems] = useState<any>([...dataProductItems]);
@@ -80,10 +80,10 @@ export default function Searchproduct({
   return (
     <WrapperContainer>
       <HeaderTitle
-        title={title}
+        title={metaTitle}
         isActive={true}
         subTitle={subTitle}
-        content={description}
+        content={metaDescription}
       />
 
       <WrapperGrid columns={{ base: 2, sm: 2, md: 5 }} gap={3.5}>

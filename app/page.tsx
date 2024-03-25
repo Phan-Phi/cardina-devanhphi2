@@ -17,7 +17,7 @@ export async function generateMetadata(): Promise<Metadata> {
     titleSEO: "Cardina",
   };
 
-  return getMetadata({ dataFavicon, ...data.attributes.pageinfo, ...titleSEO });
+  return getMetadata({ dataFavicon, ...data.attributes.seo, ...titleSEO });
 }
 
 const HomePage = async () => {

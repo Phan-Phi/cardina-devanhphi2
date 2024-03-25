@@ -3,9 +3,20 @@
 import HeaderTitle from "@/components/HeaderTitle";
 import CardProduct from "@/compositions/Card/CardProduct";
 import Slick from "@/compositions/Slick/Slick";
-import { Box, SimpleGrid, chakra } from "@chakra-ui/react";
+import {
+  Box,
+  BoxProps,
+  ChakraComponent,
+  ComponentWithAs,
+  SimpleGrid,
+  chakra,
+} from "@chakra-ui/react";
 import { get } from "lodash";
 import { useMemo } from "react";
+
+interface StyledBox extends BoxProps {
+  count: number;
+}
 
 interface Props {
   initialData: any;
@@ -32,8 +43,12 @@ export default function RelatedProduct({ initialData }: Props) {
         {render}
       </SimpleGrid> */}
 
-      <WrapperSlick>
-        <Slick variant="multiple" props={{ dots: false }}>
+      <WrapperSlick count={products.data.length}>
+        <Slick
+          variant="multiple"
+          count={products.data.length}
+          props={{ dots: false }}
+        >
           {render}
         </Slick>
       </WrapperSlick>
@@ -41,21 +56,76 @@ export default function RelatedProduct({ initialData }: Props) {
   );
 }
 
-const WrapperSlick = chakra(Box, {
-  baseStyle: {
-    "& .slick-track": {
-      display: "flex",
-      margin: "0.3rem 0",
-      // gap: "1rem",
-    },
-    "& .slick-slide": {
-      padding: "0 0.5rem",
-    },
+// const WrapperSlick = chakra(Box, {
+//   baseStyle: {
+//     // "& .slick-list": {
+//     //   display: "flex",
+//     //   justifyContent: "center",
+//     // },
+//     "& .slick-track": {
+//       display: "flex",
+//       margin: "0.3rem 0",
+//       // width: "100% !important",
+//     },
+//     "& .slick-slide": {
+//       padding: "0 0.5rem",
+//     },
 
-    "& .slick-active": {
-      "& .WrapperItemCard": {
-        boxShadow: "rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px",
+//     "& .slick-active": {
+//       "& .WrapperItemCard": {
+//         boxShadow: "rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px",
+//       },
+//     },
+//   },
+// });
+
+const WrapperSlick: ChakraComponent<
+  ComponentWithAs<"div", StyledBox>,
+  {}
+> = chakra(Box, {
+  shouldForwardProp: (props) => !["count"].includes(props),
+  baseStyle(props) {
+    const _count: any = get(props, "count");
+
+    const theme = props.theme;
+
+    return {
+      "& .slick-slider": {
+        "& .slick-prev": {
+          left: 0,
+        },
+
+        "& .slick-next": {
+          right: 0,
+        },
+
+        [theme.breakpoints.mdUp]: {
+          padding: "0 2rem",
+        },
+
+        [theme.breakpoints.mdDown]: {
+          padding: "0 1.5rem",
+        },
       },
-    },
+
+      "& .slick-list": {
+        display: _count >= 3 ? "block" : "flex",
+        justifyContent: "center",
+      },
+      "& .slick-track": {
+        display: "flex",
+        margin: "0.3rem 0",
+        // width: "100% !important",
+      },
+      "& .slick-slide": {
+        padding: "0 0.5rem",
+      },
+
+      "& .slick-active": {
+        "& .WrapperItemCard": {
+          boxShadow: "rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px",
+        },
+      },
+    };
   },
 });

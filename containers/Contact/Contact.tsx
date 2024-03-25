@@ -1,24 +1,22 @@
 "use client";
 
 import { get } from "lodash";
-import { Box, Container, Tooltip, chakra } from "@chakra-ui/react";
+import { Box, Container, chakra } from "@chakra-ui/react";
 
 import { Image } from "@/components";
 import { ContactPage } from "@/interfaces/strapi/content_types/contact-page";
 
 import HeaderTitle from "@/components/HeaderTitle";
 import FormContact from "./components/FormContact";
-import { FaExclamationTriangle } from "react-icons/fa";
 
 interface Props {
   initialData: ContactPage;
 }
 
 export default function Contact({ initialData }: Props) {
-  console.log("🚀 ~ Contact ~ initialData:", initialData);
   if (initialData == undefined) return;
 
-  const { title, description } = get(initialData, "attributes.pageinfo");
+  const { metaTitle, metaDescription } = get(initialData, "attributes.seo");
   const banner = get(initialData, "attributes.banner");
   const url = get(banner, "image.data.attributes.url");
 
@@ -32,7 +30,7 @@ export default function Contact({ initialData }: Props) {
         />
       </WrapperBanner>
 
-      <HeaderTitle title={title} content={description} />
+      <HeaderTitle title={metaTitle} content={metaDescription} />
 
       <FormContact />
     </WrapperContainer>

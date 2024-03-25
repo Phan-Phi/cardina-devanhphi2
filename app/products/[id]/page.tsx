@@ -19,25 +19,21 @@ export async function generateMetadata({ params }: any): Promise<Metadata> {
       },
     },
   });
+  return {};
+  // const { data: dataSetting }: Payload<GeneralSettingPage> =
+  //   await fetchData("GENERAL_SETTING");
 
-  const { data: dataSetting }: Payload<GeneralSettingPage> =
-    await fetchData("GENERAL_SETTING");
-
-  const dataFavicon = dataSetting.attributes.favicon;
-  return getMetadata({ dataFavicon, ...data[0].attributes.pageinfo });
+  // const dataFavicon = dataSetting.attributes.favicon;
+  // return getMetadata({ dataFavicon, ...data[0].attributes.seo });
 }
 
 const DetailProductPage = async ({ params }: any) => {
   const { id } = params;
 
   const { data }: Payload<ListingProductPage> = await fetchData("PRODUCTS", {
-    populate: "deep,4",
+    populate: "deep",
     filters: {
-      pageinfo: {
-        slug: {
-          $eq: id,
-        },
-      },
+      id: id,
     },
   });
 

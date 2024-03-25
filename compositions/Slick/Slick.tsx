@@ -27,27 +27,17 @@ const createSettings = (variant: string, count: number) => {
   } else {
     return {
       dots: false,
-      infinite: count >= 5 ? true : false,
+      infinite: count >= 3 ? true : false,
       speed: 500,
-      slidesToShow: 5,
+      slidesToShow: 3,
       slidesToScroll: 1,
-      arrows: count >= 5 ? true : false,
-      draggable: count >= 5 ? true : false,
+      arrows: count >= 3 ? true : false,
+      draggable: count >= 3 ? true : false,
       nextArrow: <FaChevronRight color="#37AFE3" />,
       prevArrow: <FaChevronLeft color="#37AFE3" />,
       responsive: [
         {
           breakpoint: 900,
-          settings: {
-            infinite: count >= 4 ? true : false,
-            arrows: count >= 4 ? true : false,
-            draggable: count >= 4 ? true : false,
-            slidesToShow: 4,
-            slidesToScroll: 1,
-          },
-        },
-        {
-          breakpoint: 700,
           settings: {
             infinite: count >= 3 ? true : false,
             arrows: count >= 3 ? true : false,
@@ -56,9 +46,19 @@ const createSettings = (variant: string, count: number) => {
             slidesToScroll: 1,
           },
         },
+        // {
+        //   breakpoint: 700,
+        //   settings: {
+        //     infinite: count >= 3 ? true : false,
+        //     arrows: count >= 3 ? true : false,
+        //     draggable: count >= 3 ? true : false,
+        //     slidesToShow: 3,
+        //     slidesToScroll: 1,
+        //   },
+        // },
 
         {
-          breakpoint: 420,
+          breakpoint: 430,
           settings: {
             draggable: count > 1 ? true : false,
             infinite: count > 1 ? true : false,

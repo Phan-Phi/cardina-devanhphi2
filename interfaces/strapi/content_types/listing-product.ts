@@ -12,7 +12,7 @@ export interface ListingProductPage {
     createdAt: Date;
     updatedAt: Date;
     publishedAt?: Date;
-    pageinfo: PageInfomation;
+    seo: PageInfomation;
     subTitle: string;
   };
 }

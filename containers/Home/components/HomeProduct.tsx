@@ -47,6 +47,8 @@ const Wrapper = chakra(Container, {
   baseStyle(props) {
     const theme = props.theme as ExtendTheme;
     return {
+      padding: "0 1.5rem",
+
       [theme.breakpoints.mdDown]: {
         padding: "0 2.5rem",
       },

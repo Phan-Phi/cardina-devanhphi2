@@ -21,9 +21,9 @@ export const ContactSchema = () => {
 
 export const DefaultContactFormState = () => {
   return {
-    name: "Lâm Hoàng Phúc",
-    email: "dev@gmail.com",
-    subject: "dev",
-    message: "dev",
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
   };
 };

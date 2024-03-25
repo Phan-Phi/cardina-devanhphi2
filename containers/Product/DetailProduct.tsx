@@ -28,7 +28,7 @@ interface Props {
   initialData: any;
 }
 export default function DetailProduct({ initialData }: Props) {
-  const { price, pageinfo, purchaseURL, relationSection } = get(
+  const { price, discountPrice, seo, purchaseURL, relationSection } = get(
     initialData,
     "[0].attributes"
   );
@@ -62,8 +62,9 @@ export default function DetailProduct({ initialData }: Props) {
         </StyledSlick>
 
         <InfoProduct
+          discountPrice={discountPrice}
           dataPrice={price}
-          dataInfo={pageinfo}
+          dataInfo={seo}
           purchaseURL={purchaseURL}
         />
       </WrapperGrid>

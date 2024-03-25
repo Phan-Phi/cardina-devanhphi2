@@ -2,7 +2,6 @@
 
 import { get } from "lodash";
 import { Box, Container, ExtendTheme, chakra } from "@chakra-ui/react";
-
 import HeaderTitle from "@/components/HeaderTitle";
 import RenderBody from "@/compositions/RenderHTML/RenderBody";
 import Certifications from "@/compositions/Certifications/Certifications";
@@ -16,17 +15,21 @@ interface Props {
 }
 
 export default function About({ initialData, initialDataSetting }: Props) {
-  console.log("🚀 ~ About ~ initialData:", initialData);
+  // console.log("🚀 ~ About ~ initialData:", initialData);
   const { body, certificationSection } = initialData.attributes;
   const { certificationImages } = initialDataSetting.attributes;
 
-  const { title, description } = get(initialData, "attributes.pageinfo");
+  if (initialData == undefined) return;
+
+  const { metaTitle, metaDescription } = get(initialData, "attributes.seo");
 
   return (
     <WrapperContainer>
-      <HeaderTitle title={title} content={description} />
+      <HeaderTitle title={metaTitle} content={metaDescription} />
 
-      <RenderBody contents={body} />
+      <WrapperContent>
+        <RenderBody contents={body} />
+      </WrapperContent>
 
       <WrapperCertifications>
         <Certifications
@@ -61,6 +64,15 @@ const WrapperCertifications = chakra(Box, {
         marginTop: "2rem",
         marginBottom: "1rem",
       },
+    };
+  },
+});
+
+const WrapperContent = chakra(Box, {
+  baseStyle(props) {
+    const theme = props.theme;
+    return {
+      "& h2": { fontSize: "50px" },
     };
   },
 });

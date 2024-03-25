@@ -69,7 +69,7 @@ export default function FormControl(props: FormControlProps) {
         autoComplete="off"
         errorIcon={!error}
         autoCapitalize="none"
-        _placeholder={{ opacity: 1, color: "black" }}
+        _placeholder={{ opacity: 0.4, color: "black", fontSize: "12px" }}
         {...InputProps}
       />
 

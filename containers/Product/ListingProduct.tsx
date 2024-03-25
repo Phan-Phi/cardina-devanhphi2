@@ -37,7 +37,8 @@ export default function ListingProduct({
   dataProductItems,
   metaDataProductItems,
 }: Props) {
-  const { title, description } = initialData.attributes.pageinfo;
+  const headerTitleData = get(initialData, "attributes.seo");
+
   const subTitle = initialData.attributes.subTitle;
 
   const [dataItems, setDataItems] = useState<any>([...dataProductItems]);
@@ -84,18 +85,38 @@ export default function ListingProduct({
     });
   }, [dataItems]);
 
-  return (
-    <WrapperContainer>
+  const renderHeaderTitle = useMemo(() => {
+    if (headerTitleData === null) return;
+    const { metaTitle, metaDescription } = headerTitleData;
+    return (
       <HeaderTitle
-        title={title}
+        title={metaTitle}
         isActive={true}
         subTitle={subTitle}
-        content={description}
+        content={metaDescription}
       />
+    );
+  }, [headerTitleData]);
+
+  return (
+    <WrapperContainer>
+      {renderHeaderTitle}
 
       {/* <BoxFlex>{render}</BoxFlex> */}
 
-      <WrapperGrid columns={{ base: 2, sm: 2, md: 5 }} gap={3.5}>
+      <Box style={{}}></Box>
+
+      <WrapperGrid
+        transform={
+          dataItems.length === 1
+            ? "translateX(33.2%)"
+            : dataItems.length === 2
+              ? "translateX(18%)"
+              : "none"
+        }
+        columns={{ base: 1, sm: 2, md: 3 }}
+        gap={3.5}
+      >
         {render}
       </WrapperGrid>
 
@@ -125,6 +146,7 @@ const WrapperContainer = chakra(Container, {
     return {
       marginTop: "10rem",
       textAlign: "center",
+      overflow: "hidden",
       [theme.breakpoints.smDown]: {
         marginTop: "6.8rem",
         marginBottom: "1rem",
@@ -139,8 +161,15 @@ const WrapperContainer = chakra(Container, {
 });
 
 const WrapperGrid = chakra(SimpleGrid, {
-  baseStyle: {
-    marginBottom: "2.5rem",
+  baseStyle(props) {
+    const theme = props.theme;
+    return {
+      marginBottom: "2.5rem",
+
+      [theme.breakpoints.smDown]: {
+        transform: "none !important",
+      },
+    };
   },
 });
 

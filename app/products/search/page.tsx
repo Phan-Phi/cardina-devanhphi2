@@ -20,7 +20,7 @@ export async function generateMetadata(): Promise<Metadata> {
     titleSEO: "Products",
   };
 
-  return getMetadata({ dataFavicon, ...data.attributes.pageinfo, ...titleSEO });
+  return getMetadata({ dataFavicon, ...data.attributes.seo, ...titleSEO });
 }
 
 const SearchProductPage = async ({ searchParams }: any) => {
@@ -35,8 +35,8 @@ const SearchProductPage = async ({ searchParams }: any) => {
   }: Payload<ListingProductPage> = await fetchData("PRODUCTS", {
     populate: "deep",
     filters: {
-      pageinfo: {
-        title: {
+      seo: {
+        metaTitle: {
           $containsi: name,
           // $eqi: name,
         },

@@ -39,7 +39,7 @@ export const NAVBAR_ROUTES = [
   },
   {
     key: "/about",
-    name: "About",
+    name: "About Cardina",
     link: "/about",
   },
   {

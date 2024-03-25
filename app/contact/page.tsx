@@ -9,7 +9,6 @@ import { Metadata } from "next";
 
 export async function generateMetadata(): Promise<Metadata> {
   const { data }: Payload<ContactPage> = await fetchData("CONTACT");
-  console.log("🚀 ~ generateMetadata ~ data:", data);
   const { data: dataSetting }: Payload<GeneralSettingPage> =
     await fetchData("GENERAL_SETTING");
 
@@ -19,7 +18,7 @@ export async function generateMetadata(): Promise<Metadata> {
     titleSEO: "Contact Us",
   };
 
-  return getMetadata({ dataFavicon, ...data.attributes.pageinfo, ...titleSEO });
+  return getMetadata({ dataFavicon, ...data.attributes.seo, ...titleSEO });
 }
 
 const ContactPage = async () => {

@@ -6,7 +6,7 @@ export interface HomePage {
     createdAt: Date;
     updatedAt: Date;
     publishedAt?: Date;
-    pageinfo: PageInfomation;
+    seo: PageInfomation;
     body: any;
   };
 }
