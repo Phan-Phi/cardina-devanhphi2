@@ -4,6 +4,7 @@ const getMetadata = (data: any): Metadata => {
   const {
     metaTitle,
     metaDescription,
+    metaImage,
     seoImage,
     dataFavicon,
     titleSEO,
@@ -11,6 +12,7 @@ const getMetadata = (data: any): Metadata => {
     keywords,
     canonicalURL,
   } = data;
+  console.log("🚀 ~ getMetadata ~ metaImage:", metaImage);
 
   const bgImage = `${process.env.NEXT_PUBLIC_BACKEND_API}${seoImage?.data?.attributes?.url}`;
   const fvImage = `${process.env.NEXT_PUBLIC_BACKEND_API}${dataFavicon?.data?.attributes?.url}`;
@@ -37,7 +39,7 @@ const getMetadata = (data: any): Metadata => {
 
       images: [
         {
-          url: bgImage || bgImage || "",
+          url: metaImage.url || "",
           alt: metaTitle,
           type: "image/jpeg",
         },
