@@ -27,7 +27,7 @@ const getMetadata = (data: any): Metadata => {
   // const bgWidth = seoImage?.data?.attributes?.width;
   // const bgHeight = seoImage?.data?.attributes?.height;
   return {
-    title: titleSEO || metaTitle || "Cardina",
+    title: titleSEO || metaTitle || "Cardina1111",
     description: metaDescription || "",
     icons: {
       icon: fvImage,
