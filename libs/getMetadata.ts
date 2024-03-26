@@ -37,7 +37,7 @@ const getMetadata = (data: any): Metadata => {
     openGraph: {
       title: metaTitle || "",
       description: metaDescription || "",
-
+      type: "website",
       images: [
         {
           url: bgImage || "",
